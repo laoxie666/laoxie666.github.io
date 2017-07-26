@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        p{
+            list-style: none;
+            display: flex;
+            justify-content: center;
+        }
+        span{
+            width: 60px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            margin: 1px;
+            background-color: #0f0;
+        }
+    </style>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    var arr=[[],[,1]];
+    var f=function(){
+       return function(x,y){
+           arr[x]=arr[x]||[];
+            if(arr[x][y]){
+                return arr[x][y]
+            }
+            if(y==1||y==x){
+                arr[x][y]=1;
+                return 1
+            }else{
+                arr[x][y]=f(x-1,y-1)+f(x-1,y);
+                return arr[x][y];
+            }
+        }
+    }();
+    function yh(x){
+        for(var i=1;i<=x;i++){
+            f(x,i)
+        }
+    };
+    yh(20);
+    for(var i=1,l=arr.length;i<l;i++){
+       var p=document.createElement("p");
+        for(var j=1,len=i+1;j<len;j++){
+            var span=document.createElement("span");
+            span.innerHTML=arr[i][j];
+            p.appendChild(span);
+        }
+        document.body.appendChild(p);
+    }
+</script>
